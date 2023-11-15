@@ -1,0 +1,20 @@
+{% extends "blog/base.html" %}
+{% block content %}
+    <div class="features">
+      <h1>Форма для создание новой посылки</h1>
+      <div class="row justify-content-center align-items-center h-100">
+        <form method="post">
+          {% csrf_token %}
+          <p>{{ form.recipient }}</p>
+          <p>{{ form.order }}</p>
+          <p>{{ form.left }}</p>
+          <p>{{ form.country }}</p>
+          <p>{{ form.city }}</p>
+          <p>Код Товара: </p>
+          <p>{{ form.code }}</p>
+          <span>{{ error }}<br></span>
+          <button class = "btn btn-success" type="submit">Create</button>
+        </from>
+      </div>
+    </div>
+{% endblock content %}

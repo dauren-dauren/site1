@@ -1,0 +1,33 @@
+{% extends "blog/base.html" %}
+
+{% block content %}
+  <form method="post">
+    <div class="media-body">
+      <div class="article-metadata">
+        <a class="mr-2" href="#">{{ post.recipient }}</a>
+        <small class="text-muted">{{ post.code }}</small>
+      </div>
+      <h2><a class="article-title">{{ post.order }}</a></h2>
+      {% csrf_token %}
+
+      <!-- Checkbox for "Покинул" -->
+      <label>Покинул {{ post.left }}:</label>
+      <input type="checkbox" name="left_checkbox" {% if post.left_boolean %} checked {% endif %}><br>
+
+      <!-- Checkbox for "Прибыл в" -->
+      <label>Прибыл в {{ post.country }}:</label>
+      <input type="checkbox" name="country_checkbox" {% if post.country_boolean %} checked {% endif %}><br>
+
+      <!-- Checkbox for "Прибыл в Город" -->
+      <label>Прибыл в Город {{ post.city }}:</label>
+      <input type="checkbox" name="city_checkbox" {% if post.city_boolean %} checked {% endif %}><br>
+
+      <!-- Checkbox for "Доставлен" -->
+      <label>Доставлен:</label>
+      <input type="checkbox" name="delivered_checkbox" {% if post.delivered_boolean %} checked {% endif %}><br>
+
+      <button class="btn btn-success" type="submit" name="action" value="Edit">Edit</button>
+      <button class="btn btn-success" type="submit" name="action" value="Delete">Delete</button>
+    </div>
+  </form>
+{% endblock content %}

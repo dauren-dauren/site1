@@ -1,0 +1,27 @@
+﻿{% extends "blog/base.html" %}
+
+{% block content %}
+    <form action="{% url 'blog-home' %}" method="GET">
+        <label for="code">Код посылки: </label>
+        <input type="text" name="code" id="code">
+        <button type="submit">Поиск...</button>
+    </form>
+
+    {% for post in posts %}
+        <article class="media content-section">
+            <div class="media-body">
+              <div class="article-metadata">
+                <a class="mr-2">Посылка для: {{ post.recipient }}</a>
+                <small class="text-muted">Код: {{ post.code}}</small>
+              </div>
+              <h2><a class="article-title">{{ post.order }}</a></h2>
+              <p>Покинул {{ post.left }}: {{ post.left_boolean }}</p>
+              <p>Прибыл в {{ post.country }}: {{ post.country_boolean }}</p>
+              <p>Прибыл в Город {{ post.city }}: {{ post.city_boolean }}</p>
+              <p>Доставлен: {{ post.delivered_boolean }}</p>
+            </div>
+        </article>
+    {% empty %}
+        <p>Введите код товара чтобы посмотреть его статус.</p>
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,45 @@
+﻿{% extends "blog/base.html" %}
+{% block content %}
+<h2><a class="article-title">Ещё не доставлено</a></h2>
+<link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+  {% if on_delivery %}
+    {% for post in on_delivery %}
+      <article class="media content-section">
+        <div class="media-body">
+          <div class="article-metadata">
+            <a class="mr-2" href="#">{{ post.recipient }}</a>
+            <small class="text-muted">{{ post.code}}</small>
+          </div>
+          <h2><a class="article-title" href="{{ post.code}}/">{{ post.order }}<i class='bx bx-pencil bx-tada-hover' ></i></a></h2>
+          <p>Покинул {{ post.left }}: {{ post.left_boolean }}</p>
+          <p>Прибыл в {{ post.country }}: {{ post.country_boolean }}</p>
+          <p>Прибыл в Город {{ post.city }}: {{ post.city_boolean }}</p>
+          <p>Доставлен: {{ post.delivered_boolean }}</p>
+        </div>
+      </article>
+    {% endfor %}
+  {% else %}
+    <p>Нет посылок на доставке.</p>
+  {% endif %}
+
+<h2><a class="article-title">Доставлено</a></h2>
+  {% if delivered %}
+    {% for post in delivered %}
+      <article class="media content-section">
+        <div class="media-body">
+          <div class="article-metadata">
+            <a class="mr-2" href="#">{{ post.recipient }}</a>
+            <small class="text-muted">{{ post.code}}</small>
+          </div>
+          <h2><a class="article-title" href="{{ post.code}}/">{{ post.order }}<i class='bx bx-pencil bx-tada-hover' ></i></a></h2>
+          <p>Покинул {{ post.left }}: {{ post.left_boolean }}</p>
+          <p>Прибыл в {{ post.country }}: {{ post.country_boolean }}</p>
+          <p>Прибыл в Город {{ post.city }}: {{ post.city_boolean }}</p>
+          <p>Доставлен: {{ post.delivered_boolean }}</p>
+        </div>
+      </article>
+    {% endfor %}
+  {% else %}
+    <p>Нет доставленных посылок.</p>
+  {% endif %}
+{% endblock content %}
